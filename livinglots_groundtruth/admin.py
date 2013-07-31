@@ -1,11 +1,7 @@
 from django.contrib import admin
 
-from django_monitor.admin import MonitorAdmin
 
-from .models import GroundtruthRecord
-
-
-class GroundtruthRecordAdmin(MonitorAdmin):
+class GroundtruthRecordAdminMixin(admin.ModelAdmin):
     fields = ('groundtruth_target', 'actual_use', 'contact_name',
               'contact_email', 'contact_phone', 'added',)
     list_display = ('pk', 'groundtruth_target', 'actual_use', 'contact_name',
@@ -21,6 +17,3 @@ class GroundtruthRecordAdmin(MonitorAdmin):
         except Exception:
             return ''
     groundtruth_target.allow_tags = True
-
-
-admin.site.register(GroundtruthRecord, GroundtruthRecordAdmin)
